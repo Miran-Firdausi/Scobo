@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Pill Dispenser{% endblock %}
+{% block styles %}
+    <link href="{% static 'css/pill-dispenser.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<main>
+<div class="form-container">
+  <h2 class="title">Patient Medicine Dispenser</h2>
+
+  <form method="post" class="form">
+    {% csrf_token %}
+    <div class="patient-name">
+    	<input type="text" placeholder="Enter Patient name"  required class="input-field">
+    </div>
+    
+    <div class="medicine-list">
+      <label for="medicineSelect" class="form-label">Medication:</label>
+      <select id="medicineSelect" name="medicine" class="input-field">
+        <option value="Medicine 1">Medicine 1</option>
+        <option value="Medicine 2">Medicine 2</option>
+        <option value="Medicine 3">Medicine 3</option>
+      </select>
+    </div>
+
+    <div class="time-select">
+      <div class="form-label">Medication Time:</div>
+      <input type="radio" name="medication-time" value="now" id="now" required>
+      <label for="now" class="gap">Now</label>
+
+      <input type="radio" name="medication-time" value="schedule" id="schedule" required>
+      <label for="schedule">Schedule</label>
+      <input type="time" class="time-input" name="time">
+    </div>
+    
+    <input type="submit" value="Add Medicine" class="submit-button">
+  </form> 
+</div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAMYVgxTe_zXOJZi0GHfTnXqZG21SS4xCc",
+    authDomain: "scobo-a5c22.firebaseapp.com",
+    projectId: "scobo-a5c22",
+    storageBucket: "scobo-a5c22.appspot.com",
+    messagingSenderId: "852264831860",
+    appId: "1:852264831860:web:62ec423c76307fc97efa21",
+    measurementId: "G-YN0W78Y24E"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+{% endblock %}

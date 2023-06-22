@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Scobo{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon_io/favicon.ico' %}">
+    <link href="{% static 'css/global.css' %}" rel="stylesheet">
+    <link href="{% static 'css/navbar.css' %}" rel="stylesheet">
+    {% block styles %}
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar">
+    <div class="row">
+        <div class="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <span class="logo">Scobo</span>
+    </div>
+    <ul class="navbar__list">
+        <a class="navbar__link {% if dispenser_page %}active{% endif %}" href="{% url 'pill_dispenser' %}">
+            <li class="navbar__item row">
+                <img class="navbar__icon" src="{% static 'assets/pill_icon.svg' %}">
+                Pill Dispenser
+            </li>
+        </a>
+        <a class="navbar__link {% if video_chat_page %}active{% endif %}" href="{% url 'video_chat_join' %}">
+            <li class="navbar__item row">
+                <img class="navbar__icon" src="{% static 'assets/video_on.svg' %}">
+                Video Call
+            </li>
+        </a>
+        <a class="navbar__link {% if about_page %}active{% endif %}" href="{% url 'about' %}">
+            <li class="navbar__item row">
+                <img class="navbar__icon" src="{% static 'assets/info.svg' %}">
+                About Scobo
+            </li>
+        </a>
+    </ul>
+</nav>
+{% block  content %}
+{% endblock %}
+
+<script src="{% static 'js/toggleNavbar.js' %}"></script>
+{% block scripts %}
+{% endblock %}
+</body>
+</html>
